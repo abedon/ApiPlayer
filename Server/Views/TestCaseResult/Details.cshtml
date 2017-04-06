@@ -1,0 +1,69 @@
+﻿@model AutoTest.Common.TestCaseResult
+
+@{
+    ViewBag.Title = "Details of the selected test case result";
+}
+
+<h2>@ViewBag.Title</h2>
+<script>
+    $(document).ready(function () {
+        $("#tabs").tabs();
+    });
+</script>
+
+<fieldset>
+    <legend>Test Case Result [@Html.DisplayFor(model => model.ID)]</legend>
+
+    <div class="display-label">Test Case ID:</div>
+    <div class="display-field">
+        @*@Html.DisplayFor(model => model.TestCaseID)*@
+        @Html.ActionLink(Model.TestCaseID.ToString(), "Details", "TestCase", new { id = Model.TestCaseID }, null)
+    </div>
+
+    <div class="display-label">Tester IP:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TesterIP)
+    </div>
+
+    <div class="display-label">Start Time:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StartTime)
+    </div>
+
+    <div class="display-label">End Time: </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EndTime)
+    </div>
+
+    <div class="display-label">Total Time: </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TotalTime) ms
+    </div>
+
+    <div class="display-label">Average Time:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AverageTime) ms
+    </div>
+
+    <div class="display-label">Longest Time:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LongestTime) ms
+    </div>
+
+    <div class="display-label">Shortest Time:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ShortestTime) ms
+    </div>
+
+    <div class="display-label">Actual Responses</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ActualResponses, "ActualResponses")
+    </div>
+
+    <br/>
+    @RenderPage("~/Views/Shared/Notes.cshtml")
+</fieldset>
+<p>
+    @Html.ActionLink("Delete", "Delete", new { id = Model.ID }) |
+    @Html.ActionLink("Back to Test Case Result List", "Index")
+</p>

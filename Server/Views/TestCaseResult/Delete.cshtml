@@ -1,0 +1,50 @@
+﻿@model AutoTest.Common.TestCaseResult
+
+@{
+    ViewBag.Title = "Delete the selected test case result";
+}
+
+<h2>@ViewBag.Title</h2>
+<script>
+    $(document).ready(function () {
+        $("#tabs").tabs();
+    });
+</script>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Test Case Result @Html.DisplayFor(model => model.ID)</legend>
+
+    <div class="display-label">Test Case ID: </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TestCaseID)
+    </div>
+
+    <div class="display-label">Tester IP: </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TesterIP)
+    </div>
+
+    <div class="display-label">Start Time: </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StartTime)
+    </div>
+
+    <div class="display-label">End Time: </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EndTime)
+    </div>
+
+    <div class="display-label">Actual Responses</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ActualResponses, "ActualResponses")
+    </div>
+
+
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to Test Case Result List", "Index")
+    </p>
+}

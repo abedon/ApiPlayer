@@ -1,0 +1,78 @@
+﻿@model AutoTest.Common.TestCase
+
+@{
+    ViewBag.Title = "Delete the selected test case";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+
+<script>
+    $(document).ready(function () {
+        $("#tabs").tabs();
+        $("#tabsexp").tabs();
+    });
+</script>
+
+<fieldset>
+    <legend>TestCase [@Html.DisplayFor(model => model.ID)]</legend>
+    <div class="display-field">
+        [Name]: @Html.DisplayFor(model => model.Name) <br />
+        [Description]: @Html.DisplayFor(model => model.Description)<br />
+    </div>
+
+    <div class="display-label">Request</div>
+    <div class="display-field">
+        [TargetDomain]: @Html.DisplayFor(model => model.Request.TargetDomain)<br />
+        [TargetIp]: @Html.DisplayFor(model => model.Request.TargetIp)<br />
+        [AppVersion]: @Html.DisplayFor(model => model.Request.AppVersion) <br />
+        [QueryString]: @Html.DisplayFor(model => model.Request.QueryString)<br />
+        [IsSSL]: @Html.DisplayFor(model => model.Request.IsSSL)<br />
+        [Port]: @Html.DisplayFor(model => model.Request.Port)<br />
+        [Verb]: @Html.DisplayFor(model => model.Request.Verb)<br />
+        [CustomHeaders]: @Html.DisplayFor(model => model.Request.CustomHeaders)<br />
+    </div>
+
+    <div class="display-label">Settings</div>
+    <div class="display-field">
+        [Mode]: @Html.DisplayFor(model => model.Settings.Mode) <br />
+        [Interval]: @Html.DisplayFor(model => model.Settings.Interval)<br />
+        [LoopsOfMixedModeRunning]: @Html.DisplayFor(model => model.Settings.LoopsOfMixedModeRunning)<br />
+        [Amount]: @Html.DisplayFor(model => model.Settings.Amount)<br />
+        [IsDebugEnabled]: @Html.DisplayFor(model => model.Settings.IsDebugEnabled)<br />
+        [ResetServerCacheFirst]: @Html.DisplayFor(model => model.Settings.ResetServerCacheFirst)<br />
+    </div>
+
+    <div class="display-label">XMLs</div>
+    <br />
+    <div id="tabs">
+        <ul>
+            <li><a href="#tabs-1">@Html.LabelFor(model => model.Request.Body)</a></li>
+            <li><a href="#tabs-2">@Html.LabelFor(model => model.Request.DebugData)</a></li>
+            <li><a href="#tabs-3">@Html.LabelFor(model => model.Expectations)</a></li>
+        </ul>
+        <div id="tabs-1">
+            <div class="display-field">
+                <pre>@Html.DisplayFor(model => model.Request.Body)</pre>
+            </div>
+        </div>
+        <div id="tabs-2">
+            <div class="display-field">
+                <pre>@Html.DisplayFor(model => model.Request.DebugData)</pre>
+            </div>
+        </div>
+        <div id="tabs-3">
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Expectations, "Expectations")
+            </div>
+        </div>
+    </div>
+
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to Test Case List", "Index")
+    </p>
+}

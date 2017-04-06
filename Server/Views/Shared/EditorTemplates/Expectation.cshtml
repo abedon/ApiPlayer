@@ -1,0 +1,28 @@
+﻿@model AutoTest.Common.ExpectedResponse
+
+@using AutoTest.Common
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.MatchType)
+</div>
+<div class="editor-field">
+    @Html.DropDownListFor(model => model.MatchType, new SelectList(Enum.GetValues(typeof(MatchOption))))
+    @Html.ValidationMessageFor(model => model.MatchType)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Amount)
+</div>
+<div class="editor-field">
+    @Html.TextBoxFor(model => model.Amount, new { @Value = 1 })
+    @Html.ValidationMessageFor(model => model.Amount)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.MatchText)
+</div>
+<div class="editor-field">
+    @Html.TextAreaFor(model => model.MatchText, new { @class = "xmlcontent" })
+    @Html.ValidationMessageFor(model => model.MatchText)
+</div>
+

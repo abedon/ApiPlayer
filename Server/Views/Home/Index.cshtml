@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "API Player";
+}
+
+<h2>Test Case Management</h2>
+<p>
+    To manage test cases, please go to @Html.ActionLink("Test Cases", "Index", "TestCase") <br/>
+    <br/>
+    To manage test suites, please go to @Html.ActionLink("Test Suites", "Index", "TestSuite") <br/>
+    <br/>
+    To review test case results, please go to @Html.ActionLink("Test Case Results", "Index", "TestCaseResult")<br/>
+    <br/>
+    To review test suite results, please go to @Html.ActionLink("Test Suite Results", "Index", "TestSuiteResult")<br/>
+</p>
+<br/>
+<p>
+    <h2>Tools</h2>
+    <a href="http://www.apiplayer.com/downloads/AutoTestClient.zip">Download Client (console app) here</a> to run test cases locally
+    <br /><br />
+    <a href="http://www.apiplayer.com/downloads/WebApplication1.zip">Download a sample WebAPI (self-host) here</a> as the test target
+</p>
+<br />
+<p>
+    <h2>Quick Start</h2>
+    1. Download and extract the above tools to your desktop.
+    <br /><br />
+    2. Execute the followings in Command Prompt to get the sample webapi ready to be tested (assuming <a target="_blank" href="https://www.microsoft.com/net/download/core">.NET Core Runtime</a> has been installed):
+<pre>
+    cd C:\Users\&lt;your name>\Desktop\WebApplication1\
+    dotnet restore  (first time only)
+    dotnet run
+</pre>
+    <br />
+    2. Execute the followings in a <b>new</b> Command Prompt to run the predefined test case (this is where you <b><font color="red">Play the API</font></b>):
+<pre>
+    cd C:\Users\&lt;your name>\Desktop\AutoTestClient
+    AutoTest.Client.exe run testcase 4
+</pre>
+    <br />
+    3. Check the test result details in Test Case Results.
+</p>

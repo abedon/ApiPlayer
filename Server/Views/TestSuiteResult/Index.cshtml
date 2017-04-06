@@ -1,0 +1,66 @@
+﻿@model IEnumerable<AutoTest.Common.TestSuiteResult>
+
+@{
+    ViewBag.Title = "Test Suite Result List";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table width="100%">
+    <tr>
+        <th width="265px">
+            Test Suite Result ID
+        </th>
+        <th width="81px">
+            Test Suite ID
+        </th>
+        <th>
+            Tester
+        </th>
+        <th>
+            Start Time
+        </th>
+        <th>
+            Finish Time
+        </th>
+        <th>
+            Total Time
+        </th>
+        <th>
+            Average Time
+        </th>
+        <th width="102px">
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TestSuiteID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TesterIP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalTime) ms
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AverageTime) ms
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        </td>
+    </tr>
+}
+
+</table>

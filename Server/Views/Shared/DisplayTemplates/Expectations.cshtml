@@ -1,0 +1,49 @@
+﻿@model List<AutoTest.Common.ExpectedResponse>
+
+@using AutoTest.Common
+
+<div id="tabsexp">
+    <ul>
+        @{
+            int i = 0;
+            foreach (var item in Model)
+            {
+                i++;
+                <li><a href="#tabsexp-@i">Expected Response @i</a></li>
+            }
+        }
+    </ul>
+
+    @{
+        var j = 0;
+        foreach (var item in Model)
+        {
+            j++;
+            <div id="tabsexp-@j">
+                <div class="editor-label">
+                    @Html.LabelFor(model => item.MatchType)
+                </div>
+                <div class="editor-field">
+                    @Html.DisplayFor(model => item.MatchType)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => item.Amount)
+                </div>
+                <div class="editor-field">
+                    @Html.DisplayFor(model => item.Amount)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => item.MatchText)
+                </div>
+                <div class="editor-field">
+                    @Html.DisplayFor(model => item.MatchText, new { @class = "xmlcontent" })
+                </div>
+                </div>
+            }
+        }
+</div>
+
+
+

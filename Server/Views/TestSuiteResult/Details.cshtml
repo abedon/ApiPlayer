@@ -1,0 +1,61 @@
+﻿@model AutoTest.Common.TestSuiteResult
+
+@{
+    ViewBag.Title = "Details of the selected test suite result";
+}
+
+<h2>@ViewBag.Title</h2>
+<script>
+    $(document).ready(function () {
+        $("#tabs").tabs();
+    });
+</script>
+
+<fieldset>
+    <legend>Test Suite Result [@Html.DisplayFor(model => model.ID)]</legend>
+
+    <div class="display-label">Test Case ID:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TestSuiteID)
+    </div>
+
+    <div class="display-label">Tester IP:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TesterIP)
+    </div>
+
+    <div class="display-label">Start Time:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StartTime)
+    </div>
+
+    <div class="display-label">End Time: </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EndTime)
+    </div>
+
+    <div class="display-label">Total Time: </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TotalTime) ms
+    </div>
+
+    <div class="display-label">Average Time:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AverageTime) ms
+    </div>
+
+    <div class="display-label">Longest Time:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LongestTime) ms
+    </div>
+
+    <div class="display-label">Shortest Time:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ShortestTime) ms
+    </div>
+
+</fieldset>
+<p>
+    @Html.ActionLink("Delete", "Delete", new { id = Model.ID }) |
+    @Html.ActionLink("Back to Test Suite Result List", "Index")
+</p>

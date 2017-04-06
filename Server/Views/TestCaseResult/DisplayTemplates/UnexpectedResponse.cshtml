@@ -1,0 +1,26 @@
+﻿@model Dictionary<string, int>
+
+<div id="tabs">
+    <ul>
+        @{
+            int i = 0;
+            foreach (var item in Model)
+            {
+                <li><a href="#tabs-@i">Times: @Html.DisplayFor(modelItem => item.Value)</a></li>
+                i++;
+            }
+        }
+    </ul>
+    @{
+        var j = 0;
+        foreach (var item in Model)
+        {
+            <div id="tabs-@j">
+                <div class="display-field">
+                    <pre>@Html.DisplayFor(modelItem => item.Key)</pre>
+                </div>
+            </div>
+            j++;
+        }
+    }
+</div>

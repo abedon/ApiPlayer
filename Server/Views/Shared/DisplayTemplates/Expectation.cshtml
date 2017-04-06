@@ -1,0 +1,25 @@
+﻿@model AutoTest.Common.ExpectedResponse
+
+@using AutoTest.Common
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.MatchType)
+</div>
+<div class="editor-field">
+    @Html.DisplayFor(model => model.MatchType)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Amount)
+</div>
+<div class="editor-field">
+    @Html.DisplayFor(model => model.Amount)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.MatchText)
+</div>
+<div class="editor-field">
+    @Html.DisplayFor(model => model.MatchText, new { @class = "xmlcontent" })
+</div>
+

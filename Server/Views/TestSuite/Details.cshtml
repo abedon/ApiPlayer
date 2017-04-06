@@ -1,0 +1,42 @@
+﻿@model AutoTest.Common.TestSuite
+
+@{
+    ViewBag.Title = "Details of the selected test suite";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<fieldset>
+    <legend>Test Suite [@Html.DisplayFor(model => model.ID)]</legend>
+    
+    <div class="display-label">Environment</div>
+    <div class="display-field">
+        [Description]: @Html.DisplayFor(model => model.Environment.Description) <br/>
+
+        @if (Model.Environment.TestCases != null) {
+            int count = 0;
+            int maxCount = Model.Environment.TestCases.Count;
+            string display = "[TestCases]: ";
+
+            while (count < maxCount)
+            {
+                int TestCase = Model.Environment.TestCases[count];
+
+                display += TestCase.ToString().Trim();
+                count++;
+
+                if (count != maxCount) {
+                    display += ", ";
+                }
+            }
+
+            @display;
+        }
+        <br/>
+        [ExecutionMode]: @Html.DisplayFor(model => model.Environment.ExecutionMode)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to Test Suite List", "Index")
+</p>

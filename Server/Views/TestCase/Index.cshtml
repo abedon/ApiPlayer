@@ -1,0 +1,76 @@
+﻿@model IEnumerable<AutoTest.Common.TestCase>
+
+@{
+    ViewBag.Title = "Test Case List";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Create a new test case", "Create")
+</p>
+<table width="100%">
+    <tr>
+        <th width="12px">
+            ID
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            TargetDomain
+        </th>
+        <th>
+            TargetIp
+        </th>
+        <th>
+            Verb
+        </th>
+        <th>
+            Mode
+        </th>
+        <th>
+            Amount
+        </th>
+        <th width="139px">
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Request.TargetDomain)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Request.TargetIp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Request.Verb)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Settings.Mode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Settings.Amount)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

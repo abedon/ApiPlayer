@@ -1,0 +1,200 @@
+﻿@model AutoTest.Common.TestCase
+
+@using AutoTest.Common
+@using System.Collections.Generic
+
+@{
+    ViewBag.Title = "Create a new test case";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script>
+    $(document).ready(function () {
+        $("#tabs").tabs();
+    });
+</script>
+
+
+@using (Html.BeginForm("Create", "TestCase", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Test Case</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+        
+        <br/>
+        <div id="tabs">
+            <ul>
+                <li><a href="#tabs-1">@Html.LabelFor(model => model.Settings)</a></li>
+                <li><a href="#tabs-2">@Html.LabelFor(model => model.Request)</a></li>
+                <li><a href="#tabs-3">@Html.LabelFor(model => model.Request.Body)</a></li>
+                <li><a href="#tabs-4">@Html.LabelFor(model => model.Request.DebugData)</a></li>
+                <li><a href="#tabs-5">@Html.LabelFor(model => model.Expectations)</a></li>
+            </ul>
+            <div id="tabs-1">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Settings.IsDebugEnabled)
+                </div>
+                <div class="editor-field">
+                    @Html.CheckBoxFor(model => model.Settings.IsDebugEnabled, new { @Value = false })
+                    @Html.ValidationMessageFor(model => model.Settings.IsDebugEnabled)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Settings.Amount)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Settings.Amount, new { @Value = 1 })
+                    @Html.ValidationMessageFor(model => model.Settings.Amount)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Settings.Mode)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.Settings.Mode, new SelectList(Enum.GetValues(typeof(ExecutionMode))))
+                    @Html.ValidationMessageFor(model => model.Settings.Mode)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Settings.Interval)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Settings.Interval, new { @Value = 0 })
+                    @Html.ValidationMessageFor(model => model.Settings.Interval)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Settings.LoopsOfMixedModeRunning)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Settings.LoopsOfMixedModeRunning, new { @Value = 0 })
+                    @Html.ValidationMessageFor(model => model.Settings.LoopsOfMixedModeRunning)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Settings.ResetServerCacheFirst)
+                </div>
+                <div class="editor-field">
+                    @Html.CheckBoxFor(model => model.Settings.ResetServerCacheFirst, new { @Value = false })
+                    @Html.ValidationMessageFor(model => model.Settings.ResetServerCacheFirst)
+                </div>
+            </div>
+
+            <div id="tabs-2">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Request.TargetDomain)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Request.TargetDomain, new { @Value = "localhost" })
+                    @Html.ValidationMessageFor(model => model.Request.TargetDomain)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Request.TargetIp)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Request.TargetIp, new { @Value = "127.0.0.1" })
+                    @Html.ValidationMessageFor(model => model.Request.TargetIp)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Request.Port)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Request.Port, new { @Value = 80 })
+                    @Html.ValidationMessageFor(model => model.Request.Port)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Request.QueryString)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Request.QueryString)
+                    @Html.ValidationMessageFor(model => model.Request.QueryString)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Request.AppVersion)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Request.AppVersion, new { @Value = "1.0.0.0" })
+                    @Html.ValidationMessageFor(model => model.Request.AppVersion)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Request.Verb)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.Request.Verb, new SelectList(Enum.GetValues(typeof(RequestType))))
+                    @Html.ValidationMessageFor(model => model.Request.Verb)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Request.IsSSL)
+                </div>
+                <div class="editor-field">
+                    @Html.CheckBoxFor(model => model.Request.IsSSL, new { @Value = false })
+                    @Html.ValidationMessageFor(model => model.Request.IsSSL)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Request.CustomHeaders)
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Request.CustomHeaders)
+                    @Html.ValidationMessageFor(model => model.Request.CustomHeaders)
+                </div>
+            </div>
+
+            <div id="tabs-3">
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.Request.Body, new { @class = "xmlcontent" })
+                    @Html.ValidationMessageFor(model => model.Request.Body)
+                </div>                
+            </div>
+
+            <div id="tabs-4">
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.Request.DebugData, new { @class = "xmlcontent" })
+                    @Html.ValidationMessageFor(model => model.Request.DebugData)
+                </div>
+            </div>
+
+            <div id="tabs-5">
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Expectations, "Expectation")
+                </div>                
+            </div>
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+
+        @RenderPage("~/Views/Shared/Notes.cshtml")
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to Test Case List", "Index")
+</div>

@@ -1,0 +1,22 @@
+<result>
+  <timestamp_start>11/15/2016 11:29:46 PM</timestamp_start>
+  <timestamp_end>11/15/2016 11:29:49 PM</timestamp_end>
+  <total_time>2058</total_time>
+  <average_time>205</average_time>
+  <longest_time>208</longest_time>
+  <shortest_time>204</shortest_time>
+  <actualresponses>
+    <response>
+      <body>13
+["value1","value2"]
+0
+
+</body>
+      <statuscode></statuscode>
+      <isexpected>True</isexpected>
+      <isamountexpected>True</isamountexpected>
+      <headers></headers>
+      <amount>10</amount>
+    </response>
+  </actualresponses>
+</result>

@@ -1,0 +1,20 @@
+﻿@model Dictionary<string, string>
+
+@using AutoTest.Common
+
+@{
+    var customHeaders = "";
+    foreach (var item in Model)
+    {
+        if (!string.IsNullOrEmpty(customHeaders))
+        {
+            customHeaders += "&";
+        }
+
+        customHeaders += item.Key + "=" + item.Value;
+    }
+}
+
+<div class="editor-label">
+    @Html.TextBoxFor(model => model, new { @Value = customHeaders })
+</div>

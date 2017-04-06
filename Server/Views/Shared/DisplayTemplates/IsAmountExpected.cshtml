@@ -1,0 +1,17 @@
+﻿@model int
+
+@using AutoTest.Common
+
+@{
+    <div class="display-field">
+        @if ((bool)ViewData["IsAmountExpected"])
+        {
+            <p style="color:darkgreen;background-color:lightgreen"><b>@Model</b></p>
+        }
+        else
+        {
+            <p style="color:red;background-color:lightcoral"><b>@Model</b></p>
+        }
+    </div>
+
+}

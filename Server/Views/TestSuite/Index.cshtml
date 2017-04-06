@@ -1,0 +1,70 @@
+﻿@model IEnumerable<AutoTest.Common.TestSuite>
+
+@{
+    ViewBag.Title = "Test Suite List";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Create a new test suite", "Create")
+</p>
+<table width="100%">
+    <tr>
+        <th width="12px">
+            ID
+        </th>
+        <th>
+            Description
+        </th>
+        <th width="300px">
+            TestCases
+        </th>
+        <th width="100px">
+            ExecutionMode
+        </th>
+        <th width="139px">
+        </th>
+    </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Description)
+            </td>
+            <td>
+                @if (item.TestCases != null) {
+                    int count = 0;
+                    int maxCount = item.TestCases.Count;
+                    string display = "";
+
+                    while (count < maxCount)
+                    {
+                        int TestCase = item.TestCases[count];
+
+                        display += TestCase.ToString().Trim();
+                        count++;
+
+                        if (count != maxCount) {
+                            display += ", ";
+                        }
+                    }
+
+                    @display;
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Settings.ExecutionMode)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            </td>
+        </tr>
+        }
+
+</table>

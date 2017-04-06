@@ -1,0 +1,59 @@
+﻿@model List<AutoTest.Common.ActualResponse>
+
+@using AutoTest.Common
+
+<div id="tabs">
+    <ul>
+        @{
+            int i = 0;
+            foreach (var item in Model)
+            {
+                i++;
+                <li><a href="#tabs-@i">Actual Response @i</a></li>
+            }
+        }
+    </ul>
+        @{
+            var j = 0;
+            foreach (var item in Model)
+            {
+                j++;
+                <div id="tabs-@j">
+                    <div class="display-label">
+                        @Html.LabelFor(model => item.IsExpected)
+                    </div>
+                    <div class="display-field">
+                        @Html.DisplayFor(model => item.IsExpected, "IsExpected")
+                    </div>
+
+                    <div class="display-label">
+                        @Html.LabelFor(model => item.Body, new { @class = "xmlcontent" })
+                    </div>
+                    <div class="display-field">
+                        @Html.DisplayFor(model => item.Body)
+                    </div>
+
+                    <div class="display-label">
+                        @Html.LabelFor(model => item.Amount)
+                    </div>
+                    <div class="display-field">
+                        @Html.DisplayFor(model => item.Amount, "IsAmountExpected", new { IsAmountExpected = item.IsAmountExpected })
+                    </div>                    
+
+                    <div class="display-label">
+                        @Html.LabelFor(model => item.Headers)
+                    </div>
+                    <div class="display-field">
+                        @Html.DisplayFor(model => item.Headers)
+                    </div>
+
+                    <div class="display-label">
+                        @Html.LabelFor(model => item.StatusCode)
+                    </div>
+                    <div class="display-field">
+                        @Html.DisplayFor(model => item.StatusCode)
+                    </div>
+                </div>
+            }
+        }
+</div>
